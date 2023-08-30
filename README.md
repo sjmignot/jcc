@@ -6,6 +6,14 @@ This scaffold provides a template for creating a straightforward data analysis n
 
 The notebook includes useful tools for depency management through docker and easy downloading or uploading of cached datasets to Google Cloud Platform (GCP) so that the exact same analysis can be rerun on the exact same data.
 
+## Use this scaffold
+
+This scaffold can be pulled using cookiecutter
+
+```sh
+cookiecutter git+ssh://git@github.com/sjmignot/jcookie
+```
+
 ## Running the notebook in docker
 
 This notebook also allows the notebook to be run in jupyter. This builds a docker container with the necessary dependencies and then tries to open
