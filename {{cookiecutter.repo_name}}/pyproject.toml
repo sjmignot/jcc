@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "{{cookiecutter.repo_name}}"
+version = "0.1.0"
+description = "{{cookiecutter.project_short_description}}"
+authors = ["{{cookiecutter.full_name}} <{{cookiecutter.email}}>"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+jupyterlab = "^4.0.4"
+simple-term-menu = "^1.6.1"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.23.1"
+black = "^23.7.0"
+isort = "^5.12.0"
+jupyterlab-vim = "^4.0.2"
+jupyterlab-code-formatter = "^2.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+download_cache='{{cookiecutter.repo_name}}.cache:download'
+upload_cache='{{cookiecutter.repo_name}}.cache:upload'
+dj='{{cookiecutter.repo_name}}.bash_runner:docker_run'
