@@ -1,8 +1,8 @@
 docker build . -t {{cookiecutter.repo_name}} --ssh default
 
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app=http://localhost:8888/lab/ &
+random_port={{ range(2000, 65000) | random }}
 
-random_port=$(shuf -i 2000-65000 -n 1)
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app=http://localhost:$random_port/lab/ &
 
 docker run -it \
 	-v $GOOGLE_APPLICATION_CREDENTIALS:/tmp/keys/key.json:ro \

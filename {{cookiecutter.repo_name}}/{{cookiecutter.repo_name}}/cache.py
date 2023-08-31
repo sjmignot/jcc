@@ -8,7 +8,7 @@ from functools import wraps
 import logging
 import pandas as pd
 
-LOGGING_FORMAT = "%(asctime)s||{%(pathname)s:%(lineno)d}||%(levelname)s||%(message)s"
+LOGGING_FORMAT = "%(asctime)s||[%(pathname)s:%(lineno)d]||%(levelname)s||%(message)s"
 logging.basicConfig(format=LOGGING_FORMAT)
 LOG = logging.getLogger(__name__)
 LOG.setLevel(logging.INFO)

@@ -17,4 +17,4 @@ COPY {{cookiecutter.repo_name}} /{{cookiecutter.repo_name}}
 
 ENV PYTHONPATH "${PYTHONPATH}:/"
 
-CMD ["poetry", "run", "jupyter-lab", ".", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+CMD ["poetry", "run", "jupyter-lab", "{{cookiecutter.repo_name}}", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
