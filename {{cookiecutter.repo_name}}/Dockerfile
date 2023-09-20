@@ -1,7 +1,7 @@
 FROM python:3.10-slim
 
 RUN apt-get update \
-	&& apt-get install -y sudo fzf software-properties-common curl wget tar git libc6-dev gfortran unzip libhdf5-dev parallel gcc g++ musl-dev python3-dev libffi-dev libgdal-dev gdal-bin openssh-client
+	&& apt-get install -y sudo fzf software-properties-common curl wget tar git libc6-dev gfortran unzip libhdf5-dev parallel gcc g++ musl-dev python3-dev libffi-dev libgdal-dev gdal-bin openssh-client nodejs
 
 # download public key for github.com
 RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
