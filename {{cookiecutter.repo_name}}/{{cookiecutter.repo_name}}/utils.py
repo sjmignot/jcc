@@ -5,7 +5,7 @@ import pandas as pd
 import logging
 from google.cloud import storage
 
-LOGGING_FORMAT = "%(asctime)s||{%(pathname)s:%(lineno)d}||%(levelname)s||%(message)s"
+LOGGING_FORMAT = "%(asctime)s||[%(pathname)s:%(lineno)d]||%(levelname)s||%(message)s"
 RECOGNIZED_FILE_EXTENSIONS = {
     "pqt": "parquet",
 }
