@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 from shutil import make_archive, unpack_archive
-from utils import upload_file_to_bucket, list_files_from_bucket
+from .utils import upload_file_to_bucket, list_files_from_bucket
 
 from simple_term_menu import TerminalMenu
 from functools import wraps
@@ -20,6 +20,7 @@ except ImportError:
 
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+CACHE_DIR = os.path.dirname(DIR_PATH)
 
 DATA_BUCKET = "{{cookiecutter.data_bucket}}"
 DATA_BUCKET_FOLDER = os.path.join(
@@ -81,8 +82,8 @@ def cacheable(dirname: str = "/.cache", filename: str = None, geo=False):
 
 
 def download():
-    cache_zip = os.path.join(DIR_PATH, "cache.zip")
-    cache_dir = os.path.join(DIR_PATH, ".cache")
+    cache_zip = os.path.join(CACHE_DIR, "cache.zip")
+    cache_dir = os.path.join(CACHE_DIR, ".cache")
     if os.path.exists(cache_dir) and os.listdir(cache_dir):
         error_message = (
             f"cache folder '.cache' already exists: {os.path.join(DIR_PATH, '.cache')}. "
@@ -105,7 +106,7 @@ def download():
             'No files in folder "{DATA_BUCKET_FOLDER}" of bucket "{DATA_BUCKET}"\n'
             "Use the upload command to load the first set of timestamped cache data"
         )
-    unpack_archive(os.path.join(DIR_PATH, "cache.zip"), cache_dir, format="zip")
+    unpack_archive(os.path.join(CACHE_DIR, "cache.zip"), cache_dir, format="zip")
     LOG.info(f"Successfully unpacked cache to {cache_dir}")
     LOG.info(f"Removing {cache_zip}...")
     os.remove(cache_zip)
@@ -114,5 +115,5 @@ def download():
 def upload():
     datestring = f"{datetime.now():%Y-%m-%d}"
     ziparc = os.path.join(DIR_PATH, datestring)
-    make_archive(ziparc, "zip", os.path.join(DIR_PATH, ".cache"))
+    make_archive(ziparc, "zip", os.path.join(CACHE_DIR, ".cache"))
     upload_file_to_bucket(f"{ziparc}.zip", DATA_BUCKET, DATA_BUCKET_FOLDER)

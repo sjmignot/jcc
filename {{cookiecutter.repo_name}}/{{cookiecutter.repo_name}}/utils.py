@@ -28,6 +28,29 @@ def bucket_exists(bucket_name, client=None):
     return bucket if be else False
 
 
+def upload_file_to_bucket(filename, bucket_name, bucket_directory=""):
+    if not os.path.exists(filename):
+        error_message = f"file {filename} does not exists"
+
+        LOG.error(error_message)
+        raise ValueError(error_message)
+
+    if os.path.isdir(filename):
+        error_message = f"file {filename} is a directory. This function can only be used to upload a single file"
+
+        LOG.error(error_message)
+        raise ValueError(error_message)
+
+    client = storage.Client()
+
+    if not (bucket := bucket_exists(bucket_name, client)):
+        error_message = f"bucket {bucket} does not exist"
+        raise ValueError(error_message)
+
+    blob = bucket.blob(f"{bucket_directory}/{os.path.basename(filename)}")
+    blob.upload_from_filename(filename)
+
+
 def list_files_from_bucket(bucket_name, bucket_directory=""):
     client = storage.Client()
 
