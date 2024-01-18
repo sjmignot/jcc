@@ -6,8 +6,8 @@
   "data_bucket": "gcp-data-bucket",
   "data_bucket_folder": "data",
   "project_short_description": "Simple jupyter notebook EDA.",
-  "release_date": "2023-08-10",
-  "year": "2023",
+  "release_date": "2024-01-17",
+  "year": "2024",
   "version": "0.1.1",
   "__prompts__": {
     "full_name": "Provide your [bold yellow]full name[/]",
